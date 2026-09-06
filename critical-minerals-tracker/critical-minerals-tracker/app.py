@@ -11,6 +11,11 @@ Run:  streamlit run app.py
 
 from __future__ import annotations
 
+# NumPy 2.0 compat shim — MUST come before pandas / plotly / streamlit are used,
+# so removed aliases (e.g. np.unicode_) are restored before any transitive
+# package (older pyarrow/pandas/altair) touches them. See np_compat.py.
+import np_compat  # noqa: F401  (import for side effect)
+
 import pandas as pd
 import plotly.express as px
 import plotly.graph_objects as go

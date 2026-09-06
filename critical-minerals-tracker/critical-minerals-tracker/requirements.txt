@@ -1,9 +1,8 @@
-# NumPy pinned below 2.0 — the `np.unicode_` removal in NumPy 2.0 breaks older
-# transitive deps (pyarrow/pandas/altair) that Streamlit pulls in. 1.26.x is the
-# last 1.x line and is compatible with everything below.
-numpy>=1.26,<2
-pandas>=2.1,<2.3
-pyarrow>=14          # Streamlit's Arrow serialization; old versions used np.unicode_
-streamlit>=1.37,<2
+# Minimal on purpose. Streamlit Community Cloud already ships prebuilt
+# numpy / pandas / pyarrow wheels for its Python (currently 3.13); pinning older
+# versions of those forces slow source-compiles on deploy. np_compat.py handles
+# the NumPy 2.0 `np.unicode_` compatibility at runtime, so nothing needs pinning.
+streamlit>=1.40
+pandas
 plotly>=5.18
-requests>=2.31
+requests
