@@ -1,8 +1,9 @@
 # NumPy pinned below 2.0 — the `np.unicode_` removal in NumPy 2.0 breaks older
 # transitive deps (pyarrow/pandas/altair) that Streamlit pulls in. 1.26.x is the
 # last 1.x line and is compatible with everything below.
-numpy==1.26.4
+numpy>=1.26,<2
 pandas>=2.1,<2.3
-pyarrow==14.0.1
+pyarrow>=14          # Streamlit's Arrow serialization; old versions used np.unicode_
+streamlit>=1.37,<2
 plotly>=5.18
 requests>=2.31
